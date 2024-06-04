@@ -1,0 +1,12 @@
+{
+  "name": "markdown-to-html",
+  "version": "1.0.0",
+  "description": "This application converts a subset of Markdown syntax to HTML. It validates the Markdown syntax and either outputs the converted HTML to the console or to a specified output file.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
