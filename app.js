@@ -29,4 +29,37 @@ function convertMarkdownToHTML(markdown) {
   
     return html;
   }
+  function main() {
+    const args = process.argv.slice(2);
+    if (args.length < 1) {
+      console.error('Usage: node app.js <input.md> [--out <output.html>]');
+      process.exit(1);
+    }
+  
+    const inputFile = args[0];
+    const outputFlagIndex = args.indexOf('--out');
+    const outputFile = outputFlagIndex !== -1 ? args[outputFlagIndex + 1] : null;
+  
+    try {
+      const markdown = fs.readFileSync(inputFile, 'utf8');
+  
+      if (!validateMarkdown(markdown)) {
+        throw new Error('Invalid markdown syntax');
+      }
+  
+      const html = convertMarkdownToHTML(markdown);
+  
+      if (outputFile) {
+        fs.writeFileSync(outputFile, html, 'utf8');
+      } else {
+        console.log(html);
+      }
+    } catch (err) {
+      console.error('Error:', err.message);
+      process.exit(1);
+    }
+  }
+  
+  main();
+  
   
