@@ -16,3 +16,17 @@ function validateMarkdown(markdown) {
 
   return true;
 }
+function convertMarkdownToHTML(markdown) {
+    let html = markdown
+      .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')  // Bold
+      .replace(/_(.*?)_/g, '<i>$1</i>')        // Italic
+      .replace(/`(.*?)`/g, '<tt>$1</tt>')      // Monospaced
+      .replace(/```([\s\S]*?)```/g, '<pre>$1</pre>') // Preformatted block
+      .replace(/^(?!<\/?pre>)(.*)$/gm, '<p>$1</p>'); // Add <p> tags to paragraphs
+  
+    // Remove empty <p> tags
+    html = html.replace(/<p>\s*<\/p>/g, '');
+  
+    return html;
+  }
+  
